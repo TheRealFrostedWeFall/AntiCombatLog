@@ -63,6 +63,7 @@ command /anticombatlog [<text>]:
 on join:
     if {anticombatlog.%player%} > 0:
         message "{@Prefix} {@ColorScheme1}You logged out in combat!"
+	make console execute command "kill %player%"
 
 
 
