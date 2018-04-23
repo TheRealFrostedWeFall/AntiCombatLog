@@ -63,7 +63,34 @@ command /anticombatlog [<text>]:
 on join:
     if {anticombatlog.%player%} > 0:
         message "{@Prefix} {@ColorScheme1}You logged out in combat!"
-	make console execute command "kill %player%"
+		make console execute command "kill %player%"
+
+
+on command "tpa"
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
+
+on command "tp"
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
+		
+on command "spawn"
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport to spawn whilst in combat!"
+
+on command "home"
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
+
+# How to add your own command to be blocked whilst a player is in combat # 
+#on command "<command name without backslash>"
+#	if {anticombatlog.%player%} > 0:
+#		cancel event
+#		message "{@Prefix} {@ColorScheme1}<insert deny message here>" 
 
 
 
