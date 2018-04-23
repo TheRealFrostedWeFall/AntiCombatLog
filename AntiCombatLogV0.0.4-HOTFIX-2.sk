@@ -90,7 +90,7 @@ on command "home":
 		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
 
 # How to add your own command to be blocked whilst a player is in combat # 
-#on command "<command name without backslash>"
+#on command "<command name without backslash>":
 #	if {anticombatlog.%player%} > 0:
 #		cancel event
 #		message "{@Prefix} {@ColorScheme1}<insert deny message here>" 
