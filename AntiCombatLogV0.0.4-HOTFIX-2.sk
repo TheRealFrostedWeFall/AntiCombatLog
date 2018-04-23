@@ -4,7 +4,7 @@
 options:
 	ConfigVersion: 1.0
 	# Do not edit this, its for me to help people if / when they require help! #
-	Version: 0.0.4-HOTFIX 2
+	Version: 0.0.4-HOTFIX 3
 	# Please do not edit this #
 	SkriptName: AntiCombatLog 
 	# Edit this to what you save the skript as *WITHOUT THE .SK AT THE END*
