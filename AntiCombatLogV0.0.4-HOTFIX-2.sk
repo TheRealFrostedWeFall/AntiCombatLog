@@ -17,7 +17,9 @@ options:
 	# You may use variables / placeholders such as %player% and %uuid of player% etc # 
 	SelectedWorld: "world" # Default setting
 	# Set this to the world or worlds that you wish to use this skript in # 
-	
+	PunishmentCommand1: kill %player%
+	PunishmentCommand2: eco take %player% 1000
+	# The punishment command a player will receieve after logging out in combat. eg /kill %player%
 	
 	
 	
@@ -63,7 +65,8 @@ command /anticombatlog [<text>]:
 on join:
     if {anticombatlog.%player%} > 0:
         message "{@Prefix} {@ColorScheme1}You logged out in combat!"
-		make console execute command "kill %player%"
+		make console execute command "{@PunishmentCommand1}"
+		make console execute command "{@PunishmentCommand2}"
 
 
 on command "tpa"
