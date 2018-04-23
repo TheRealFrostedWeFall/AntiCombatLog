@@ -60,14 +60,15 @@ command /anticombatlog [<text>]:
 			send "&9Usage /anticombatlog reload"		
 
 
-# Added in V0.0.4 HOTFIX 2
+# Added in V0.0.4 HOTFIX 2 # 
 
 on join:
     if {anticombatlog.%player%} > 0:
         message "{@Prefix} {@ColorScheme1}You logged out in combat!"
-		make console execute command "{@PunishmentCommand1}"
-		make console execute command "{@PunishmentCommand2}"
+        make console execute command "{@PunishmentCommand1}"
+        make console execute command "{@PunishmentCommand2}"
 
+# Added in V0.0.4 HOTFIX 3 #
 
 on command "tpa":
 	if {anticombatlog.%player%} > 0:
