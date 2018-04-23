@@ -69,22 +69,22 @@ on join:
 		make console execute command "{@PunishmentCommand2}"
 
 
-on command "tpa"
+on command "tpa":
 	if {anticombatlog.%player%} > 0:
 		cancel event
 		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
 
-on command "tp"
+on command "tp":
 	if {anticombatlog.%player%} > 0:
 		cancel event
 		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
 		
-on command "spawn"
+on command "spawn":
 	if {anticombatlog.%player%} > 0:
 		cancel event
 		message "{@Prefix} {@ColorScheme1}You may not teleport to spawn whilst in combat!"
 
-on command "home"
+on command "home":
 	if {anticombatlog.%player%} > 0:
 		cancel event
 		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
