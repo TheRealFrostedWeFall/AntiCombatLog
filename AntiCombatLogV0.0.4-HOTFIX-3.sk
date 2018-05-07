@@ -1,0 +1,101 @@
+# Thanks for installing this Skript, before you run it make sure to fully edit the config at the top of the Skript. Thanks.
+
+# ----------------------- Config Section ---------------------------
+options:
+	ConfigVersion: 1.0
+	# Do not edit this, its for me to help people if / when they require help! #
+	Version: 0.0.4-HOTFIX 3
+	# Please do not edit this #
+	SkriptName: AntiCombatLog 
+	# Edit this to what you save the skript as *WITHOUT THE .SK AT THE END*
+	Prefix: &7[&bACL&7]
+	# Set this to the prefix of your server.
+	ColorScheme1: &7
+	# Pick a color and put it here! #
+	NoPermissionMessage: &cYou have no permission!
+	# Set this to the permission message for the skript - Players without the permission to reload the Skript will see this #
+	# You may use variables / placeholders such as %player% and %uuid of player% etc # 
+	SelectedWorld: "world" # Default setting
+	# Set this to the world or worlds that you wish to use this skript in # 
+	PunishmentCommand1: kill %player%
+	PunishmentCommand2: eco take %player% 1000
+	# The punishment command a player will receieve after logging out in combat. eg /kill %player%
+	
+	
+	
+	# Thats it, you're done with the config :D
+	# More Updates Coming Soon #
+
+	
+	
+	
+	
+on damage:
+    if victim is a player:
+        if attacker is a player:
+            if {anticombatlog.%attacker%} = 0:
+                message "{@Prefix} {@ColorScheme1}You have been combat logged, do not log out!" to victim
+                message "{@Prefix} {@ColorScheme1}You have tagged %victim%, do not log out!" to attacker
+            set {anticombatlog.%attacker%} to 1
+every second in {@SelectedWorld}:
+    loop all players:
+        if {anticombatlog.%loop-player%} > 0:
+            add 1 to {anticombatlog.%loop-player%}
+    loop all players:
+        if {anticombatlog.%loop-player%} > 9:
+            set {anticombatlog.%loop-player%} to 0
+            message "{@Prefix} {@ColorScheme1}You can now log out!" to loop-player
+		
+command /anticombatlog [<text>]:
+	permission: anticombatlog.reload
+	permission message: {@NoPermissionMessage}
+	trigger:
+		if arg 1 is "reload":
+			broadcast "&7AntiCombatLog {@Version} is reloading.."
+			make player execute command "/sk reload {@SkriptName}.sk"
+			wait 4 seconds
+			broadcast "&bAntiCombatLog {@Version} has succesfully reloaded!"
+			broadcast "&bPlease report any issues on the Spigot page!"
+		else:
+			send "&9Usage /anticombatlog reload"		
+
+
+# Added in V0.0.4 HOTFIX 2 # 
+
+on join:
+    if {anticombatlog.%player%} > 0:
+        message "{@Prefix} {@ColorScheme1}You logged out in combat!"
+        make console execute command "{@PunishmentCommand1}"
+        make console execute command "{@PunishmentCommand2}"
+
+# Added in V0.0.4 HOTFIX 3 #
+
+on command "tpa":
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
+
+on command "tp":
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
+		
+on command "spawn":
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport to spawn whilst in combat!"
+
+on command "home":
+	if {anticombatlog.%player%} > 0:
+		cancel event
+		message "{@Prefix} {@ColorScheme1}You may not teleport whilst in combat!"
+
+# How to add your own command to be blocked whilst a player is in combat # 
+#on command "<command name without backslash>":
+#	if {anticombatlog.%player%} > 0:
+#		cancel event
+#		message "{@Prefix} {@ColorScheme1}<insert deny message here>" 
+
+
+
+		
